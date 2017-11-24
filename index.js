@@ -26,7 +26,8 @@ module.exports = function (appId, accessToken) {
                 FB.init({
                     appId      : appId,
                     xfbml      : true,
-                    version    : 'v2.0'
+                    version    : 'v2.0',
+                    status     : true,
                 });
                 deferredFacebook.resolve(decorate(FB));
             };
