@@ -18,26 +18,22 @@ module.exports = function (appId, accessToken) {
     if(!deferredFacebook) {
         deferredFacebook = Q.defer();
 
-        //test if we are in a browser
-        if(true) {
-            // in a browser
-            if (document.getElementById(FACEBOOK_ID)) {
-                // Facebook is already loaded
-                deferredFacebook.reject(new Error("Facebook is already loaded."));
-            } else {
-                window.fbAsyncInit = function() {
-                    FB.init({
-                        appId      : appId,
-                        xfbml      : true,
-                        version    : 'v2.0'
-                    });
-                    deferredFacebook.resolve(decorate(FB));
-                };
-                var scriptElement = document.createElement('script');
-                scriptElement.src = "//connect.facebook.net/en_US/sdk.js";
-                scriptElement.id = FACEBOOK_ID;
-                document.head.appendChild(scriptElement);
-            }
+        if (document.getElementById(FACEBOOK_ID)) {
+            // Facebook is already loaded
+            deferredFacebook.reject(new Error("Facebook is already loaded."));
+        } else {
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : appId,
+                    xfbml      : true,
+                    version    : 'v2.0'
+                });
+                deferredFacebook.resolve(decorate(FB));
+            };
+            var scriptElement = document.createElement('script');
+            scriptElement.src = "//connect.facebook.net/en_US/sdk.js";
+            scriptElement.id = FACEBOOK_ID;
+            document.head.appendChild(scriptElement);
         }
     }
     return deferredFacebook.promise;
