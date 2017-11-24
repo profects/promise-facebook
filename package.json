@@ -7,8 +7,7 @@
   "version": "0.1.1",
   "main": "index",
   "dependencies": {
-    "q": "^1.0.0",
-    "facebook-node-sdk": "git+https://github.com/Thuzi/facebook-node-sdk.git#v0.6.2"
+    "q": "^1.0.0"
   },
   "devDependencies": {
     "jshint": "~2.3.0",
@@ -16,10 +15,9 @@
     "istanbul": "~0.1.44"
   },
   "scripts": {
-    "test": "istanbul test -x 'spec/**' jasmine-node -- --junitreport spec && jshint --verbose index.js && jshint --verbose spec"
+    "test":
+      "istanbul test -x 'spec/**' jasmine-node -- --junitreport spec && jshint --verbose index.js && jshint --verbose spec"
   },
-  "exclude": [
-    "spec"
-  ],
+  "exclude": ["spec"],
   "engine": "node >= 0.6.6"
 }

@@ -19,7 +19,7 @@ module.exports = function (appId, accessToken) {
         deferredFacebook = Q.defer();
 
         //test if we are in a browser
-        if(typeof document !== "undefined") {
+        if(true) {
             // in a browser
             if (document.getElementById(FACEBOOK_ID)) {
                 // Facebook is already loaded
@@ -38,11 +38,6 @@ module.exports = function (appId, accessToken) {
                 scriptElement.id = FACEBOOK_ID;
                 document.head.appendChild(scriptElement);
             }
-        } else {
-            // in node
-            var facebook = require/**/("fb");
-            facebook.setAccessToken(accessToken);
-            deferredFacebook.resolve(decorate(facebook));
         }
     }
     return deferredFacebook.promise;
